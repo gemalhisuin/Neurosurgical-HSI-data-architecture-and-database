@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gemal Hisuin" />
+    <meta name="generator" content="" />
+    <title>RGB details</title>
+
+    <link rel="canonical" href="" />
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'styles/bootstrap.min.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">
+                Add some information about the album below, the author, or any
+                other background context. Make it a few sentences long so folks
+                can pick up some informative tidbits. Then, link them off to
+                some social networking sites or contact information.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Other?</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Lung</a></li>
+                <li><a href="#" class="text-white">Spiral cord</a></li>
+                <li><a href="#" class="text-white">Placenta</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a
+            href="{% url 'index' %}"
+            class="navbar-brand d-flex align-items-center"
+          >
+            <strong>Home</strong>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarHeader"
+            aria-controls="navbarHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <script>
+        document.write('<a href="' + document.referrer + '">Go Back</a>');
+      </script>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-2">
+          <div class="col">
+            <div class="card">
+              <div>RGB of {{category.title}}</div>
+              <div>
+                <img
+                  class="img-fluid"
+                  id="myimage"
+                  src="{{image.rgb.url}}"
+                  alt="{{image.altText}}"
+                  width="400"
+                  height="300"
+                />
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="{{image.rgb.url}}" download="{{image.rgb.url}}"
+                    ><button>Download RGB</button></a
+                  >
+                  <a
+                    href="{% url 'spectral-info' slug3=category.slug slug4=image.slug slug5=image.slug %}"
+                    >Go to spectral page</a
+                  >
+                </h5>
+                <p>{{image.description}}</p>
+              </div>
+            </div>
+          </div>
+          <div id="myresult" class="img-zoom-result"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p>Neurosurgical <a href="#">HSI database</a>.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      imageZoom("myimage", "myresult");
+    </script>
+  </body>
+</html>

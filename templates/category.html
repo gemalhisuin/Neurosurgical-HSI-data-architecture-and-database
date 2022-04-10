@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gemal Hisuin" />
+    <meta name="generator" content="" />
+    <title>RGB info</title>
+
+    <link rel="canonical" href="" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'styles/bootstrap.min.css' %}" rel="stylesheet" />
+    <style>
+      .rgb_image {
+        width: 250px;
+        height: 180px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">
+                Add some information about the album below, the author, or any
+                other background context. Make it a few sentences long so folks
+                can pick up some informative tidbits. Then, link them off to
+                some social networking sites or contact information.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a
+            href="{% url 'index' %}"
+            class="navbar-brand d-flex align-items-center"
+          >
+            <strong>Home</strong>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarHeader"
+            aria-controls="navbarHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">{{category.title}}</h1>
+        </div>
+      </div>
+      <div class="container-md border">
+        <form class="d-flex" method="POST" action="{% url 'search-page'%}">
+          {% csrf_token %}
+
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="searched"
+          />
+          <button class="btn btn-outline-secondary" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% if images|length > 0 %} {% for image in images %}
+            <div class="col">
+              <div class="card shadow-sm">
+                <img
+                  src="{{image.rgb.url}}"
+                  class="rgb_image"
+                  alt="{{image.altText}}"
+                />
+
+                <div class="card-body">
+                  <p class="card-text">
+                    {{image.shortDescription}} . . .
+                    <a
+                      href="{% url 'spectral-info' slug3=category.slug slug4=image.slug slug5=image.slug %}"
+                      >read more</a
+                    >
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <a
+                        href="{% url 'spectral-info' slug3=category.slug slug4=image.slug slug5=image.slug %}"
+                        ><button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          Image Details
+                        </button></a
+                      >
+                    </div>
+                    <small class="text-muted"
+                      >{{image.date_created|date}}</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %} {% else %}
+            <h2>No Images Uploaded for this category</h2>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p>Database for <a href="#">HSI database</a>.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

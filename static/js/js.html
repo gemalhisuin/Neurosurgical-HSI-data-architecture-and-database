@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+  </head>
+  <body>
+    <script>
+      console.log("Hello! This is the JS of HSI data architecture");
+      var a = 5;
+      var b;
+      b = a;
+      console.log(b);
+      fName = "Jemal";
+      lName = "Hisuin";
+      console.log(fName[1]);
+      console.log(lName[0]);
+      console.log(fName[fName.length - 1]);
+      function famNames(mName, fName, bName, sName) {
+        var Names = "";
+        Names = mName + " " + fName + " " + sName + " " + bName;
+        return Names;
+      }
+      console.log(famNames("Asma", "Hamid", "Mubarak", "Zawuya"));
+      console.log(famNames("Gal_Juhar", "Sandawa", "Erziku", "Fethya"));
+
+      console.log("Array in JS");
+      var numArray = ["23", "41", "123", "243"];
+      var chArray = [
+        ["ab", "cd"],
+        ["ef", "gh"],
+      ];
+      console.log(numArray);
+      console.log(chArray[1][0]);
+      numArray.push(["kl", "mn"]);
+      console.log(numArray);
+      chArray.pop();
+      console.log(chArray);
+      numArray.shift();
+      console.log(numArray);
+      chArray.unshift(["Jem", "Gem"]);
+      console.log(chArray);
+    </script>
+    <script>
+      console.log("Functions in JS");
+      var myGlobal = 41;
+      function fun1() {
+        if (typeof myGlobal != "undefined") {
+          console.log("HSI database" + myGlobal);
+          //var myLocal = 54;
+          myLocal = 54;
+        }
+      }
+      function addition(a, b, c) {
+        sum = 0;
+        sum = a + b + c;
+        if (typeof myLocal != "undefined") {
+          console.log("Summation:", sum);
+        }
+      }
+      fun1();
+      addition(5, 7, 13);
+
+      function isTrue(trueFalse) {
+        if (trueFalse) {
+          return "That is true";
+        }
+        return "That is totally false";
+      }
+      console.log(isTrue(true));
+
+      function numComp(com1) {
+        if (com1 <= 30) {
+          return "Number is less than or equal to thirteen";
+        }
+        return "number is greater than 30";
+      }
+      console.log(numComp(34));
+
+      function strComp(num2) {
+        if (num2 === 22) {
+          return "Number equal to twenty two";
+        }
+        return "Number is different";
+      }
+      console.log(strComp(22));
+      console.log(strComp("22"));
+
+      function fnCase(val) {
+        switch (val) {
+          case 1:
+          case 7:
+          case 8:
+            return "alpha";
+            break;
+          case 2:
+          case 5:
+            return "gamma";
+          //break;
+          case 3:
+            return "delta";
+          //break;
+          default:
+            return "betta";
+        }
+      }
+      console.log(fnCase(5));
+
+      console.log("Objects in JS");
+      var erStud = {
+        Name: "Gemal",
+        Country: "Ethiopia",
+        Age: 25,
+        Balance: "10m",
+      };
+      console.log(erStud);
+      console.log(erStud.Age);
+      console.log(erStud["Country"]);
+      erStud.height = 187;
+      console.log(erStud);
+      delete erStud.Balance;
+      console.log(erStud);
+
+      function fnObject(val) {
+        var erStud = {
+          Name: "Gemal",
+          Country: "Ethiopia",
+          Age: 25,
+          Balance: "10m",
+        };
+        return erStud[val];
+        /*
+                if (erStud.hasOwnProperty(val)){
+        return erStud[val];
+        }
+        else{
+          return "Not found";
+        }
+        */
+      }
+      console.log(fnObject("Age"));
+      // While loop array
+      var myArray = [];
+      i = 0;
+      while (i < 8) {
+        myArray.push(i);
+        i++;
+      }
+      console.log(myArray);
+
+      var myArray2 = [];
+      for (var i = 2; i <= 10; i += 3) {
+        myArray2.push(i);
+      }
+      console.log(myArray2);
+
+      //Mulitple array
+
+      function mlArray(aRRays) {
+        var arR= [];
+        for (i = 0; i < aRRays.length; i++) {
+          for (j = 0; j < aRRays[i].length; j++) {
+            arR.push(aRRays[i][j]);
+          }
+        }
+        return arR;
+      }
+      console.log(mlArray([[1, 5], [6, 9]]));
+
+      //do while
+      var i=40;
+      var myArray3=[]
+      do{
+        myArray3.push(i)
+        i++
+      }while(i<43)
+      console.log(i, myArray3);
+    </script>
+  </body>
+</html>

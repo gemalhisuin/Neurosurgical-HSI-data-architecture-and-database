@@ -1,0 +1,226 @@
+{% load static %} {% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gemal Hisuin" />
+    <meta name="generator" content="HSI database" />
+    <title>Neurosurgical HSI database</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.0/examples/blog/"
+    />
+
+    <!-- Load icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href=" {% static 'styles/bootstrap.min.css' %} " rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+    <link href=" {% static 'styles/blog.css' %}" rel="stylesheet" />
+
+    <style>
+      [class*="h_title"] {
+        padding: 1rem;
+        background-color: #8c9497;
+        border: 5px solid #fff;
+        text-align: center;
+        color: #fff;
+      }
+
+      .carousel-inner {
+        width: 200px;
+        max-height: 200px !important;
+      }
+      [class*="col-lg-2"] {
+        padding: 1rem;
+        background-color: #f0edeb;
+        border: 2px solid #fff;
+        color: #000;
+      }
+
+      [class*="p-2 link-secondary"] {
+        color: #000;
+        font-size: large;
+        font-weight: 200;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      input[type="text"] {
+        width: 130px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+
+      /* When the input field gets focus, change its width to 100% */
+      input[type="text"]:focus {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="blog-header py-3">
+      <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="h_title">
+            <h2>In <i>Vivo</i> Neurosurgical Hyperspectral Database</h2>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-md border">
+      <div class="row">
+        {% for category in categories%}
+        <div class="col-lg-2">
+          <a
+            class="p-2 link-secondary"
+            href="{% url 'image-category' category.slug %}"
+          >
+            {{category.title}}
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem">
+            <div class="card-header">Info 1</div>
+            <div class="card-body">
+              <h5 class="card-title">Hyperspectral Imaging</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+          <div
+            class="card text-white bg-secondary mb-3"
+            style="max-width: 18rem"
+          >
+            <div class="card-header">Info 2</div>
+            <div class="card-body">
+              <h5 class="card-title">in-vivo Neurosurgical Database</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="container">
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">
+                Click to search
+              </button>
+              <div id="myDropdown" class="dropdown-content">
+                <form
+                  class="d-flex"
+                  method="POST"
+                  action="{% url 'search-page'%}"
+                >
+                  {% csrf_token %}
+
+                  <input
+                    type="text"
+                    placeholder="Search.."
+                    id="myInput"
+                    name="searched"
+                    onkeyup="filterFunction()"
+                  />
+                  <button class="btn btn-outline-secondary" type="submit">
+                    Search
+                  </button>
+                </form>
+                <a href="#about">Dura</a>
+                <a href="#base">Artery</a>
+                <a href="#blog">Ependyma</a>
+                <a href="#contact">Parenchyma</a>
+                <a href="#custom">Bone</a>
+                <a href="#support">Cranial nerve</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="container text-blue">
+            <div class="row">
+              <div class="col-6">
+                <div
+                  class="card h-100"
+                  style="width: 13rem; border: 4px red solid"
+                >
+                  <img
+                    src="{% static 'images/Dim_room.jpg'%}"
+                    class="card-img-top"
+                    alt="Hyperspectral image"
+                  />
+                  <div class="card-img-overlay">
+                    <a href="#"><h5 class="card-title">Spectral image</h5></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div
+                  class="card h-100"
+                  style="width: 13rem; border: 4px red solid"
+                >
+                  <img
+                    src="{% static 'images/lower-5/lower_5_icg_masks-1.jpg'%}"
+                    class="card-img-top"
+                    alt="Masked image"
+                  />
+                  <div class="card-img-overlay">
+                    <a href="#"><h5 class="card-title">Mask and class</h5></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6" style="padding-left: 74px">
+                <div
+                  class="card h-100"
+                  style="width: 20rem; border: 4px red solid"
+                >
+                  <img
+                    src="{% static 'images/reflectance.png'%}"
+                    class="card-img-top"
+                    alt="Masked image"
+                  />
+                  <div class="card-img-overlay">
+                    <a href="#"
+                      ><h5 class="card-title">Spectral reflectance</h5></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="blog-footer">
+      <p>
+        Database built for
+        <a href="#">Neurosurgical HSI</a>.
+      </p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    <script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>

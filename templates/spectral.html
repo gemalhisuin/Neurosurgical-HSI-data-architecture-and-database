@@ -1,0 +1,303 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gemal Hisuin" />
+    <meta name="generator" content="" />
+    <title>RGB details</title>
+
+    <link rel="canonical" href="" />
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'styles/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <style>
+      [class*="table_name"] {
+        background-color: wheat;
+        font-size: medium;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-weight: 300;
+      }
+      [class*="heading"] {
+        text-align: center;
+        font-size: large;
+        font-family: cursive;
+        color: blue;
+      }
+      [class*="bigColum"] {
+        padding: 1rem;
+      }
+      [class*="card-img-top"] {
+        width: 240px;
+        height: 240px;
+      }
+      [class*="rgb_title"] {
+        padding-top: 5rem;
+      }
+      .zoom {
+        transition: transform 0.2s; /* Animation */
+        margin: 0 auto;
+      }
+
+      .zoom:hover {
+        transform: scale(
+          1.2
+        ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Other?</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Lung</a></li>
+                <li><a href="#" class="text-white">Spiral cord</a></li>
+                <li><a href="#" class="text-white">Placenta</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a
+            href="{% url 'index' %}"
+            class="navbar-brand d-flex align-items-center"
+          >
+            <strong>Home</strong>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <br />
+      <script>
+        document.write('<a href="' + document.referrer + '">Go Back</a>');
+      </script>
+      <div class="heading"><h2>Spectral Information</h2></div>
+
+      <div class="bigColum">
+        <div class="row">
+          <div class="col-3">
+            <div role="tabpanel">
+              <!-- List group -->
+              <div class="list-group" id="myList" role="tablist">
+                <a
+                  class="list-group-item list-group-item-action active"
+                  data-bs-toggle="list"
+                  href="#home"
+                  role="tab"
+                  >Spectral image</a
+                >
+                <a
+                  class="list-group-item list-group-item-action"
+                  data-bs-toggle="list"
+                  href="#profile"
+                  role="tab"
+                  >RGB preview</a
+                >
+                <a
+                  class="list-group-item list-group-item-action"
+                  data-bs-toggle="list"
+                  href="#messages"
+                  role="tab"
+                  >Annotation mask and tissue classes</a
+                >
+                <a
+                  class="list-group-item list-group-item-action"
+                  data-bs-toggle="list"
+                  href="#settings"
+                  role="tab"
+                  >Spectral reflectance
+                </a>
+              </div>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane active" id="home" role="tabpanel">...</div>
+                <div class="tab-pane" id="profile" role="tabpanel">...</div>
+                <div class="tab-pane" id="messages" role="tabpanel">...</div>
+                <div class="tab-pane" id="settings" role="tabpanel">...</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-3">
+            <div class="table_name">Spectral image</div>
+            <br /><br />
+            <div class="view">
+              <a href="#">Click to open the spectral image in freelook</a>
+            </div>
+            <br />
+            <div class="download">
+              <a
+                href="{{image.spectralimage.url}}"
+                download="{{image.spectralimage.url}}"
+                ><button>Download spectral</button></a
+              >
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="rgb_title">
+                  <h5>RGB image</h5>
+                </div>
+                <img
+                  class="img-fluid"
+                  id="myimage"
+                  src="{{image.rgb.url}}"
+                  alt="{{image.altText}}"
+                  width="400"
+                  height="300"
+                />
+              </div>
+              <div class="col">
+                <br /><br /><br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <a href="{{image.rgb.url}}" download="{{image.rgb.url}}"
+                  ><button>Download RGB</button></a
+                >
+              </div>
+            </div>
+            <div id="myresult" class="img-zoom-result"></div>
+          </div> -->
+          <div class="col-5">
+            <div class="table_name">Mask and tissue classes</div>
+            <div>Class of {{category.title}}</div>
+
+            <div class="card mb-3">
+              <div class="zoom">
+                <img
+                  class="card-img-top"
+                  src="{% static 'images/lower-5/lower_5_icg_masks-1.jpg'%}"
+                  alt="Mask image"
+                />
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Mask</h5>
+              </div>
+            </div>
+
+            <div class="card-deck">
+              <div class="row">
+                <div class="col-6">
+                  <div class="card">
+                    <div class="zoom">
+                      <img
+                        class="card-img-top"
+                        src="{% static 'images/lower-5/lower_5_icg_masks-2.jpg'%}"
+                        alt="Card image cap"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Dura</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card">
+                    <div class="zoom">
+                      <img
+                        class="card-img-top"
+                        src="{% static 'images/lower-5/lower_5_icg_masks-3.jpg'%}"
+                        alt="Card image cap"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Artery</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="card">
+                    <div class="zoom">
+                      <img
+                        class="card-img-top"
+                        src="{% static 'images/lower-5/lower_5_icg_masks-4.jpg'%}"
+                        alt="Card image cap"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Cranial nerve</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card">
+                    <div class="zoom">
+                      <img
+                        class="card-img-top"
+                        src="{% static 'images/lower-5/lower_5_icg_masks-6.jpg'%}"
+                        alt="Card image cap"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Pathology</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="table_name">Reflectance</div>
+            <div class="card mb-3">
+              <div class="zoom">
+                <img
+                  class="img-fluid"
+                  src="{% static 'images/reflectance/allinOne.png'%}"
+                  alt="All class average"
+                />
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="zoom">
+                <img
+                  class="img-fluid"
+                  src="{% static 'images/reflectance/dura-average.png'%}"
+                  alt="Dura average"
+                />
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="zoom">
+                <img
+                  class="img-fluid"
+                  src="{% static 'images/reflectance/artery-average.png'%}"
+                  alt="Artery average"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p>Neurosurgical <a href="#">HSI database</a>.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      imageZoom("myimage", "myresult");
+    </script>
+  </body>
+</html>

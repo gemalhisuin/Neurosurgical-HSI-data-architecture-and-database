@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions and objects</title>
+  </head>
+  <body>
+    <script>
+      var contact_list = [
+        { Name: "Abebe", Country: "Ethiopia", Age: 33, Gender: "M" },
+        {
+          Name: "Obang",
+          Country: "Sudan",
+          Age: 43,
+          Gender: "M",
+        },
+        {
+          Name: "Katrine",
+          Country: "Finland",
+          Age: 23,
+          Gender: "F",
+        },
+      ];
+      function contacts_list(name, val) {
+        for (var i = 0; i < contact_list.length; i++) {
+          if (contact_list[i].Name === name) {
+            return contact_list[i][val] || "Value not found";
+          }
+        }
+        return "Contact not found";
+      }
+      console.log(contacts_list("Katrine", "character"));
+
+      //random number
+      console.log("The generated random number is:", randNum());
+      function randNum() {
+        return Math.floor(Math.random() * 22);
+      }
+      //Parsing string
+      function parStr(val) {
+        return parseInt(val, 2);
+      }
+      console.log("The converted string is:", parStr("100011"));
+
+      let jname = "jem";
+      jname = "geml";
+      console.log(jname);
+
+      function summation(x, y, z) {
+        sum = 0;
+        sum = x + y + z;
+        return sum;
+      }
+      console.log(summation(41, 52, 74));
+
+      const months = ["Jan", "Apr", "July"];
+      let funMonth;
+      (function () {
+        // funMonth=months;
+        funMonth = [...months];
+        months[0] = "Fuck off";
+      })();
+      console.log(funMonth);
+
+      const averTemp={
+          yestTemp: {min: 22, max: 44},
+          tomTemp: {min: 14, max: 25}
+      };
+      function predTomTemp(averagetemp){
+
+          const {tomTemp: {max: predTemp}}=averagetemp;
+         // predTemp=(averTemp.tomTemp+averTemp.yestTemp)/2;
+          return predTemp;
+      }
+      console.log(predTomTemp(averTemp));
+
+      function makeClass(){
+          class Vegetable{
+              constructor(name){
+                  this.name=name;
+              }
+          }
+          return Vegetable;
+      }
+      const Vegetable=makeClass();
+      const carrot=new Vegetable('carrot');
+      console.log(carrot.name);
+
+    </script>
+  </body>
+</html>
