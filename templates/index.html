@@ -80,13 +80,10 @@
     </header>
     <div class="container-md border">
       <div class="row">
-        {% for category in categories%}
+        {% for cat in categories%}
         <div class="col-lg-2">
-          <a
-            class="p-2 link-secondary"
-            href="{% url 'image-category' category.slug %}"
-          >
-            {{category.title}}
+          <a class="p-2 link-secondary" href="{% url 'image-category' cat.pk %}">
+            {{cat.title}}
           </a>
         </div>
         {% endfor %}
@@ -129,7 +126,7 @@
                 <form
                   class="d-flex"
                   method="POST"
-                  action="{% url 'search-page'%}"
+                  action="{% url 'search-page2'%}"
                 >
                   {% csrf_token %}
 

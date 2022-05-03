@@ -1,0 +1,125 @@
+{% load static %} {% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gemal Hisuin" />
+    <meta name="generator" content="HSI database" />
+    <title>Neurosurgical HSI database</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.0/examples/blog/"
+    />
+
+    <!-- Load icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href=" {% static 'styles/bootstrap.min.css' %} " rel="stylesheet" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+    <link href=" {% static 'styles/blog.css' %}" rel="stylesheet" />
+
+    <style>
+      [class*="h_title"] {
+        padding: 1rem;
+        background-color: #8c9497;
+        border: 5px solid #fff;
+        text-align: center;
+        color: #fff;
+      }
+
+      .rgb_image {
+        width: 250px;
+        height: 180px;
+      }
+
+      .carousel-inner {
+        width: 200px;
+        max-height: 200px !important;
+      }
+      [class*="col-lg-2"] {
+        padding: 1rem;
+        background-color: #33b5e5;
+        border: 2px solid #fff;
+        color: #000;
+      }
+
+      [class*="p-2 link-secondary"] {
+        color: #000;
+        font-size: large;
+        font-weight: 200;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="blog-header py-3">
+      <div class="container">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="h_title">
+            <h2>In <i>Vivo</i> Neurosurgical Hyperspectral Database</h2>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <a
+          href="{% url 'index' %}"
+          class="navbar-brand d-flex align-items-center"
+        >
+          <strong>Home</strong>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        {% if searched%}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <h5>Search result:</h5>
+          {% for image in rgb_search %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img
+                src="{{image.classImage.url}}"
+                class="class_tissue"
+                alt="{{image.altText}}"
+              />
+
+              <div class="card-body">
+                <p class="card-text">
+                  {{image.shortDescription}} . . .
+                  <a href="category/brain-20001/brain452">read more</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {%else%}
+        <h5>Your search didn't match</h5>
+        {%endif%}
+      </div>
+    </div>
+  </body>
+</html>

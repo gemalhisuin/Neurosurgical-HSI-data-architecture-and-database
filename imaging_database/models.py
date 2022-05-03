@@ -3,6 +3,11 @@ from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
 
+
+####
+## Add slug to all the classess for better linking 
+####
+####
 class Patient(models.Model):
     age = models.IntegerField()
     gender = models.CharField(max_length=10)

@@ -75,7 +75,7 @@
           <h1 class="fw-light">{{category.title}}</h1>
         </div>
       </div>
-      <div class="container-md border">
+      <div class="container">
         <form class="d-flex" method="POST" action="{% url 'search-page'%}">
           {% csrf_token %}
 
@@ -107,17 +107,13 @@
                 <div class="card-body">
                   <p class="card-text">
                     {{image.shortDescription}} . . .
-                    <a
-                      href="{% url 'spectral-info' slug3=category.slug slug4=image.slug slug5=image.slug %}"
-                      >read more</a
-                    >
+                    <a href="{% url 'test-page' image.pk%}">read more</a>
                   </p>
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
                     <div class="btn-group">
-                      <a
-                        href="{% url 'spectral-info' slug3=category.slug slug4=image.slug slug5=image.slug %}"
+                      <a href="{% url 'test-page' image.pk%}"
                         ><button
                           type="button"
                           class="btn btn-sm btn-outline-secondary"

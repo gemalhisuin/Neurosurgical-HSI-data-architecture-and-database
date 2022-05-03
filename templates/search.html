@@ -38,6 +38,11 @@
         color: #fff;
       }
 
+      .rgb_image {
+        width: 250px;
+        height: 180px;
+      }
+
       .carousel-inner {
         width: 200px;
         max-height: 200px !important;
@@ -66,15 +71,84 @@
           </div>
         </div>
       </div>
+      <div class="container">
+        <a
+          href="{% url 'index' %}"
+          class="navbar-brand d-flex align-items-center"
+        >
+          <strong>Home</strong>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
     </header>
-    <div class="container">
+    <!-- <div class="container">
       <div class="patinet-search">
         {%block content%} {%if searched%}
-        <h5>You searched for {{searched}}.</h5>
-        {%for tissue in tissue_search%} {{tissue}}-{{tissue.classImage}}
+        <h5>Your search result for '{{searched}}' is:</h5>
+        {%for tissue in rgb_search%}
+        <a href="category/brain-20001/brain452">
+          <img
+            src="{{tissue.rgb.url}}"
+            class="rgb_image"
+            alt="{{image.altText}}"
+          />{{tissue.rgb}}</a
+        >
         {%endfor%} {%else%}
         <h5>Your search didn't match</h5>
         {%endif%} {%endblock%}
+      </div>
+    </div> -->
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        {% if searched%}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <h5>Search result:</h5>
+          {% for image in rgb_search %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img
+                src="{{image.rgb.url}}"
+                class="rgb_image"
+                alt="{{image.altText}}"
+              />
+
+              <div class="card-body">
+                <p class="card-text">
+                  {{image.shortDescription}} . . .
+                  <a href="category/brain-20001/brain452">read more</a>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="category/brain-20001/brain452"
+                      ><button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        Image Details
+                      </button></a
+                    >
+                  </div>
+                  <small class="text-muted">{{image.date_created|date}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {%else%}
+        <h5>Your search didn't match</h5>
+        {%endif%}
       </div>
     </div>
   </body>
